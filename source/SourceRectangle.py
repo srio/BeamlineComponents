@@ -1,8 +1,8 @@
 """
-Represents a rectangular aperture.
+Represents an optical rectangular source.
 """
 
-class ApertureRectangle(object):
+class SourceRectangular(object):
     def __init__(self, length_vertical, length_horizontal):
         self._length_vertical = length_vertical
         self._length_horizontal = length_horizontal

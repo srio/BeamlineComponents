@@ -1,6 +1,6 @@
 from ElectronBeam import ElectronBeam
 
-class PencilBeam(ElectronBeam):
+class ElectronBeamPencil(ElectronBeam):
     def __init__(energy_in_GeV, energy_spread, average_current, ):
         ElectronBeam.__init__(self,
                                energy_in_GeV=energy_in_GeV,
