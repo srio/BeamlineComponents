@@ -3,11 +3,12 @@ Represents an optical Gaussian source.
 """
 
 class SourceGaussian(object):
-    def __init__(self, sigma_x, sigma_y, sigma_x_prime, sigma_y_prime):
+    def __init__(self, sigma_x, sigma_y, sigma_x_prime, sigma_y_prime, energy):
         self._sigma_x = sigma_x
         self._sigma_y = sigma_y
         self._sigma_x_prime = sigma_x_prime
         self._sigma_y_prime = sigma_y_prime
+        self._energy = energy
 
     def setAveragePhotonEnergy(self, average_photon_energy):
         self.__average_photon_energy = average_photon_energy
@@ -44,3 +45,6 @@ class SourceGaussian(object):
 
     def sigmaYPrime(self):
         return self._sigma_y_prime
+
+    def energy(self):
+        return self._energy
