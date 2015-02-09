@@ -2,7 +2,7 @@
 Represents a square stop.
 """
 
-from StopRectangle import StopRectangle
+from BeamlineComponents.Stop.StopRectangle import StopRectangle
 
 class AperatureSquare(StopRectangle):
     def __init__(self, side_length):

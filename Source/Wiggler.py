@@ -1,4 +1,4 @@
-from InsertionDevice import InsertionDevice
+from BeamlineComponents.Source.InsertionDevice import InsertionDevice
 
 class Undulator(InsertionDevice):
 
