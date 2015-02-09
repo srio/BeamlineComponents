@@ -2,9 +2,9 @@
 Represents a square aperture.
 """
 
-from AperatureRectangle import AperatureRectangle
+from ApertureRectangle import ApertureRectangle
 
-class AperatureSquare(AperatureRectangle):
+class ApertureSquare(ApertureRectangle):
     def __init__(self, side_length):
         AperatureRectangle.__init__(self, side_length, side_length)
 

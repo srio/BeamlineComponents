@@ -2,11 +2,11 @@
 Represents a circular aperture.
 """
 
-from AperatureEllipse import AperatureEllipse
+from ApertureEllipse import ApertureEllipse
 
-class AperatureCircle(AperatureEllipse):
+class ApertureCircle(ApertureEllipse):
     def __init__(self, diameter):
-        AperatureEllipse.__init__(self, diameter, diameter)
+        ApertureEllipse.__init__(self, diameter, diameter)
 
     def diameter(self):
         return self.axisA()
