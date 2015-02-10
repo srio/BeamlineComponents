@@ -7,7 +7,7 @@ class UndulatorVertical(Undulator):
                            K_vertical=K,
                            K_horizontal=0.0,
                            period_length=period_length,
-                           period_number=period_number)
+                           periods_number=period_number)
 
     def K(self):
             K = self.K_vertical()
