@@ -1,4 +1,4 @@
-from numpy import pi, sqrt
+import numpy as np
 import scipy.constants.codata
 
 from BeamlineComponents.Source.InsertionDevice import InsertionDevice
@@ -32,21 +32,33 @@ class Undulator(InsertionDevice):
 
     def gaussianCentralConeDivergence(self, gamma, n=1):
         #return (1/(2.0*gamma))*sqrt((1.0/(n*self.periodNumber())) * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
-        return (1/gamma)*sqrt((1.0/(2.0*n*self.periodNumber())) * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
+        return (1/gamma)*np.sqrt((1.0/(2.0*n*self.periodNumber())) * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
 
     def ringDivergence(self, gamma, harmonic_number, ring_number):
         #return (1/(2.0*gamma))*sqrt((1.0/(n*self.periodNumber())) * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
         if ring_number == 0: # return central cone
-            return gaussianCentralConeDivergence(self, gamma, n=ring_number)
-        return (1/gamma)*sqrt( ring_number/harmonic_number * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
+            return self.gaussianCentralConeDivergence(self, gamma, n=ring_number)
+        return (1/gamma)*np.sqrt( ring_number/harmonic_number * (1.0 + self.K_horizontal()**2/2.0 + self.K_vertical()**2/2.0))
 
     def gaussianEstimateBeamSize(self, gamma, n=1):
         #TODO: check and document
-        return (2.740/(4.0*pi))*sqrt(self.periodLength()*self.resonanceWavelength(gamma,0.0,0.0)/n)
+        return (2.740/(4.0*np.pi))*np.sqrt(self.periodLength()*self.resonanceWavelength(gamma,0.0,0.0)/n)
 
     def maximalAngularFluxEnergy(self, gamma):
         #TODO What is this? Attention that input is now gamma....
         return self.resonanceEnergy(gamma,0.0,0.0)*(1.0-1.0/float(self.periodNumber()))
+
+    def asNumpyArray(self):
+        array = np.array([self.K_vertical(),
+                          self.K_horizontal(),
+                          self.periodLength(),
+                          self.periodNumber()])
+
+        return array
+
+    @staticmethod
+    def fromNumpyArray(array):
+        return Undulator(array[0], array[1], array[2], array[3])
 
     def info(self, gamma=1.0):
         print("\n=======================================================")
